@@ -11,11 +11,11 @@ jobs:
         with:
           repository: RocketChat/Rocket.Chat
           ref: 'develop'
-          token: ${{ secrets.GITHUB_PAT }}
+          token: ${{ secrets.GTHUB_PAT }}
           path: RocketChat
       - name: Checkout Apps-Engine
         uses: actions/checkout@v2
         with:
           repository: RocketChat/Rocket.Chat.Apps-engine
-          token: ${{ secrets.GITHUB_PAT }}
+          token: ${{ secrets.GTHUB_PAT }}
           path: Apps-Engine
