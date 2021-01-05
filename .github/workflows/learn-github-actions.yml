@@ -19,6 +19,7 @@ jobs:
           repository: RocketChat/Rocket.Chat.Apps-engine
           token: ${{ secrets.GTHUB_PAT }}
           path: Apps-Engine
+      - run: pwd
       - run: cd /Apps-Engine
       - run: npm run compile
       - run: cd /Rocket.Chat
