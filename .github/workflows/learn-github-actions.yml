@@ -4,6 +4,8 @@ jobs:
   e2e-testing:
     runs-on: ubuntu-latest
     steps:
+      - name: Echo Hello World
+        run: echo "Hello World"
       - name: Checkout Rocket.Chat
         uses: actions/checkout@v2
         with:
