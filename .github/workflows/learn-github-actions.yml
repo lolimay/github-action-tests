@@ -19,6 +19,8 @@ jobs:
           repository: RocketChat/Rocket.Chat.Apps-engine
           token: ${{ secrets.GTHUB_PAT }}
           path: apps-engine
+      - run: ls
+        working-directory: $GITHUB_WORKSPACE/apps-engine
       - run: npm install
         working-directory: $GITHUB_WORKSPACE/apps-engine
       - run: npm run compile
