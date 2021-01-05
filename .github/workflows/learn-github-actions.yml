@@ -20,7 +20,7 @@ jobs:
           token: ${{ secrets.GTHUB_PAT }}
           path: apps-engine
       - run: ls
-        working-directory: $GITHUB_WORKSPACE/apps-engine
+        working-directory: ./apps-engine
       - run: npm install
         working-directory: $GITHUB_WORKSPACE/apps-engine
       - run: npm run compile
