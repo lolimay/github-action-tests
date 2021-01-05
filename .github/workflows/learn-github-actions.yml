@@ -22,4 +22,4 @@ jobs:
       - name: Show Working Directory
         run: ls
       - name: Show Working Directory Structure
-      - run: tree
+        run: tree
