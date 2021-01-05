@@ -19,12 +19,13 @@ jobs:
           repository: RocketChat/Rocket.Chat.Apps-engine
           token: ${{ secrets.GTHUB_PAT }}
           path: apps-engine
-      - run: cd $GITHUB_WORKSPACE/apps-engine
+      - run: npm install
+        working-directory: $GITHUB_WORKSPACE/apps-engine
       - run: npm run compile
-      - run: cd $GITHUB_WORKSPACE/Rocket.Chat
+        working-directory: $GITHUB_WORKSPACE/apps-engine
       - run: meteor npm install
-      - run: cd node_modules/@rocket.chat
-      - run: rm -r apps-engine
-      - run: ln -s $GITHUB_WORKSPACE/apps-engine
-      - run: cd $GITHUB_WORKSPACE/Rocket.Chat
+        working-directory: $GITHUB_WORKSPACE/Rocket.Chat
+      - run: rm -r $GITHUB_WORKSPACE/Rocket.Chat/node_modules/@rocket.chat/apps-engine
+      - run: ln -s $GITHUB_WORKSPACE/apps-engine $GITHUB_WORKSPACE/Rocket.Chat/node_modules/@rocket.chat/apps-engine
       - run: meteor npm start
+        working-directory: $GITHUB_WORKSPACE/Rocket.Chat
