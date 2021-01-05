@@ -4,22 +4,27 @@ jobs:
   e2e-testing:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo Hello World
-        run: echo "Hello World"
+      - uses: actions/setup-node@v2
+      - uses: meteorengineer/setup-meteor@v1
       - name: Checkout Rocket.Chat
         uses: actions/checkout@v2
         with:
           repository: RocketChat/Rocket.Chat
           ref: 'develop'
           token: ${{ secrets.GTHUB_PAT }}
-          path: RocketChat
+          path: Rocket.Chat
       - name: Checkout Apps-Engine
         uses: actions/checkout@v2
         with:
           repository: RocketChat/Rocket.Chat.Apps-engine
           token: ${{ secrets.GTHUB_PAT }}
           path: Apps-Engine
-      - name: Show Working Directory
-        run: ls
-      - name: Show Working Directory Structure
-        run: tree
+      - run: cd /Apps-Engine
+      - run: npm run compile
+      - run: cd /Rocket.Chat
+      - run: meteor npm install
+      - run: cd node_modules/@rocket.chat
+      - run: rm -r apps-engine
+      - run: ln -s /Apps-Engine apps-engine
+      - run: cd /Rocket.Chat
+      - run: meteor npm start
