@@ -12,19 +12,19 @@ jobs:
           repository: RocketChat/Rocket.Chat
           ref: 'develop'
           token: ${{ secrets.GTHUB_PAT }}
-          path: ~/Rocket.Chat
+          path: Rocket.Chat
       - name: Checkout Apps-Engine
         uses: actions/checkout@v2
         with:
           repository: RocketChat/Rocket.Chat.Apps-engine
           token: ${{ secrets.GTHUB_PAT }}
-          path: ~/apps-engine
-      - run: cd ~/Apps-Engine
+          path: apps-engine
+      - run: cd $GITHUB_WORKSPACE/Apps-Engine
       - run: npm run compile
-      - run: cd ~/Rocket.Chat
+      - run: cd $GITHUB_WORKSPACE/Rocket.Chat
       - run: meteor npm install
       - run: cd node_modules/@rocket.chat
       - run: rm -r apps-engine
-      - run: ln -s ~/apps-engine
-      - run: cd ~/Rocket.Chat
+      - run: ln -s $GITHUB_WORKSPACE/apps-engine
+      - run: cd $GITHUB_WORKSPACE/Rocket.Chat
       - run: meteor npm start
