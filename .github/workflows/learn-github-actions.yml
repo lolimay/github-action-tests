@@ -19,8 +19,6 @@ jobs:
           repository: RocketChat/Rocket.Chat.Apps-engine
           token: ${{ secrets.GTHUB_PAT }}
           path: apps-engine # $G/apps-engine
-      - run: ls
-        working-directory: ./apps-engine
       - run: npm install
         working-directory: ./apps-engine
       - run: npm run compile
@@ -29,5 +27,6 @@ jobs:
         working-directory: ./Rocket.Chat
       - run: rm -r ./Rocket.Chat/node_modules/@rocket.chat/apps-engine
       - run: mv ./apps-engine ./Rocket.Chat/node_modules/@rocket.chat/apps-engine
-      - run: meteor npm start
+      - run: meteor npm start &
         working-directory: ./Rocket.Chat
+      - run: echo "The Rocket.Chat instance has been started."
