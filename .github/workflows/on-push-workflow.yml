@@ -1,4 +1,4 @@
-name: learn-github-actions
+name: on-push-workflow
 on: [push]
 jobs:
   e2e-testing:
@@ -19,6 +19,7 @@ jobs:
           repository: RocketChat/Rocket.Chat.Apps-engine
           token: ${{ secrets.GTHUB_PAT }}
           path: apps-engine # $G/apps-engine
+      - run: ls
       - run: npm install
         working-directory: ./apps-engine
       - run: npm run compile
